@@ -1,11 +1,9 @@
 package org.springframework.data.gigaspaces.integration.xml;
 
+import org.junit.jupiter.api.MethodOrderer.MethodName;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.data.gigaspaces.integration.BaseRepositoryTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import static org.junit.jupiter.api.MethodOrderer.Alphanumeric;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 /**
  * Test for repository XML configuration.
@@ -16,9 +14,8 @@ import static org.junit.jupiter.api.MethodOrderer.Alphanumeric;
  *
  * @author Anna_Babich
  */
-@ExtendWith(SpringExtension.class)
-@TestMethodOrder(Alphanumeric.class)
-@ContextConfiguration
+@SpringJUnitConfig
+@TestMethodOrder(MethodName.class)
 public class RepositoryXmlTest extends BaseRepositoryTest {
 
 }

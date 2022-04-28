@@ -1,16 +1,13 @@
 package org.springframework.data.gigaspaces.integration.manual;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.MethodOrderer.MethodName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.gigaspaces.integration.BaseRepositoryTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.MethodOrderer.Alphanumeric;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 /**
  * Test for manual wiring of custom repository implementations (implementing custom methods and using repository interface at the same time).
@@ -18,9 +15,8 @@ import static org.junit.jupiter.api.MethodOrderer.Alphanumeric;
  * @author Leonid_Poliakov
  */
 
-@TestMethodOrder(Alphanumeric.class)
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration
+@SpringJUnitConfig
+@TestMethodOrder(MethodName.class)
 public class RepositoryManualWiringTest extends BaseRepositoryTest {
     @Autowired
     private PersonRepositoryExtended repositoryExtended;

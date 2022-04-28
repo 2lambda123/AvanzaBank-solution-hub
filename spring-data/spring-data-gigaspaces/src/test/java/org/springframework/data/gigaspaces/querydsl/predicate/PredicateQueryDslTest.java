@@ -1,25 +1,16 @@
 package org.springframework.data.gigaspaces.querydsl.predicate;
 
-import com.querydsl.core.types.Ops;
-import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.ComparableExpression;
-import com.querydsl.core.types.dsl.Expressions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.gigaspaces.model.Person;
-import org.springframework.data.gigaspaces.model.Team;
-import org.springframework.data.gigaspaces.model.TeamStatus;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
+import static java.util.Arrays.asList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.springframework.data.gigaspaces.model.QTeam.team;
+import static org.springframework.data.gigaspaces.model.TeamStatus.INACTIVE;
+import static org.springframework.data.gigaspaces.model.TeamStatus.UNKNOWN;
+import static org.springframework.data.gigaspaces.querydsl.GigaspacesDslProjection.projection;
+import static org.springframework.data.gigaspaces.querydsl.QChangeSet.changeSet;
 
 import java.util.Date;
 import java.util.List;
@@ -27,22 +18,30 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static com.google.common.collect.Sets.newHashSet;
-import static java.util.Arrays.asList;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.gigaspaces.model.Person;
+import org.springframework.data.gigaspaces.model.Team;
+import org.springframework.data.gigaspaces.model.TeamStatus;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import static org.springframework.data.gigaspaces.model.QTeam.team;
-import static org.springframework.data.gigaspaces.model.TeamStatus.INACTIVE;
-import static org.springframework.data.gigaspaces.model.TeamStatus.UNKNOWN;
-import static org.springframework.data.gigaspaces.querydsl.QChangeSet.changeSet;
-import static org.springframework.data.gigaspaces.querydsl.GigaspacesDslProjection.projection;
+import com.querydsl.core.types.Ops;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.ComparableExpression;
+import com.querydsl.core.types.dsl.Expressions;
 
 /**
  * @author Leonid_Poliakov
  */
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration
+@SpringJUnitConfig
 public class PredicateQueryDslTest {
     private static final Person nick = new Person("1", "Nick", 25);
     private static final Person chris = new Person("2", "", 40);
