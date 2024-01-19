@@ -1,9 +1,29 @@
 package org.springframework.data.gigaspaces.integration;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.j_spaces.core.LeaseContext;
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.data.gigaspaces.repository.query.Projection.projections;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer.MethodName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openspaces.core.GigaSpace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,19 +33,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.gigaspaces.model.Person;
 import org.springframework.data.gigaspaces.repository.PersonRepository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.MethodOrderer.Alphanumeric;
-import static org.springframework.data.gigaspaces.repository.query.Projection.projections;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import com.j_spaces.core.LeaseContext;
 
 /**
  * @author Anna_Babich
  */
-@TestMethodOrder(Alphanumeric.class)
+@TestMethodOrder(MethodName.class)
 public abstract class BaseRepositoryTest {
 
     protected static Person nick;

@@ -1,25 +1,32 @@
 package org.springframework.data.gigaspaces.repository.support;
 
-import com.gigaspaces.query.IdQuery;
-import com.gigaspaces.query.IdsQuery;
-import com.gigaspaces.query.aggregators.AggregationSet;
-import com.j_spaces.core.LeaseContext;
-import com.j_spaces.core.client.SQLQuery;
+import static org.springframework.data.gigaspaces.querydsl.GigaspacesQueryDslUtils.isPaged;
+import static org.springframework.data.gigaspaces.querydsl.GigaspacesQueryDslUtils.isSorted;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+
 import org.openspaces.core.GigaSpace;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.gigaspaces.repository.GigaspacesRepository;
-import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.data.gigaspaces.repository.query.Projection;
 import org.springframework.data.gigaspaces.repository.query.QueryBuilder;
+import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.util.Assert;
 
-import java.io.Serializable;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-import static org.springframework.data.gigaspaces.querydsl.GigaspacesQueryDslUtils.*;
+import com.gigaspaces.query.IdQuery;
+import com.gigaspaces.query.IdsQuery;
+import com.gigaspaces.query.aggregators.AggregationSet;
+import com.j_spaces.core.LeaseContext;
+import com.j_spaces.core.client.SQLQuery;
 /**
  * @author Oleksiy_Dyagilev
  */
@@ -216,6 +223,17 @@ public class SimpleGigaspacesRepository<T, ID extends Serializable> implements G
     @Override
     public void delete(T entity) {
         deleteById(entityInformation.getId(entity));
+    }
+
+    @Override
+    public void deleteAllById(Iterable<? extends ID> ids) {
+        // TODO: consider replacing with distributed task to not return deleted entities back on client
+        List<ID> idList = new ArrayList<>();
+        for (ID id : ids) {
+            idList.add(id);
+        }
+        IdsQuery<T> idsQuery = idsQuery(idList.toArray()).setProjections("");
+        space.takeByIds(idsQuery);
     }
 
     @Override

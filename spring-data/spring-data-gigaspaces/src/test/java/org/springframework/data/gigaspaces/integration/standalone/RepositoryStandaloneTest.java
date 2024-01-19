@@ -1,16 +1,17 @@
 package org.springframework.data.gigaspaces.integration.standalone;
 
-import com.j_spaces.core.client.FinderException;
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.openspaces.core.GigaSpace;
-import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 import org.springframework.data.gigaspaces.integration.BaseRepositoryTest;
 import org.springframework.data.gigaspaces.repository.PersonRepository;
 import org.springframework.data.gigaspaces.repository.support.GigaspacesRepositoryFactory;
 import org.springframework.data.gigaspaces.utils.TestUtils;
+import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import java.io.IOException;
+import com.j_spaces.core.client.FinderException;
 /**
  * Test for Repository standalone usage.
  *
@@ -29,7 +30,7 @@ public class RepositoryStandaloneTest extends BaseRepositoryTest {
     }
 
     private PersonRepository initRepository() throws FinderException, IOException {
-        GigaSpace space = TestUtils.initSpace("space");
+        GigaSpace space = TestUtils.initSpace("space-standalone");
 
         RepositoryFactorySupport factory = new GigaspacesRepositoryFactory(space, null);
         return factory.getRepository(PersonRepository.class);

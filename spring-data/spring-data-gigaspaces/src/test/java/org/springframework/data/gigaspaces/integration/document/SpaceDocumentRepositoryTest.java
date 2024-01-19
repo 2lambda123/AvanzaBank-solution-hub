@@ -1,10 +1,29 @@
 package org.springframework.data.gigaspaces.integration.document;
 
-import com.gigaspaces.document.SpaceDocument;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.data.gigaspaces.repository.query.Projection.projections;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.MethodName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openspaces.core.GigaSpace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,21 +32,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.gigaspaces.model.Person;
 import org.springframework.data.gigaspaces.model.PersonDocument;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import com.gigaspaces.document.SpaceDocument;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
-import static org.junit.jupiter.api.MethodOrderer.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.data.gigaspaces.repository.query.Projection.projections;
-
-@TestMethodOrder(Alphanumeric.class)
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration
+@SpringJUnitConfig
+@TestMethodOrder(MethodName.class)
 public class SpaceDocumentRepositoryTest {
     protected static PersonDocument nick;
     protected static PersonDocument chris;
