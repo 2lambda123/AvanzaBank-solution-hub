@@ -10,7 +10,8 @@ import org.springframework.data.gigaspaces.integration.BaseRepositoryTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 /**
- * Test for manual wiring of custom repository implementations (implementing custom methods and using repository interface at the same time).
+ * Test for manual wiring of custom repository implementations (implementing
+ * custom methods and using repository interface at the same time).
  *
  * @author Leonid_Poliakov
  */
@@ -18,11 +19,10 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig
 @TestMethodOrder(MethodName.class)
 public class RepositoryManualWiringTest extends BaseRepositoryTest {
-    @Autowired
-    private PersonRepositoryExtended repositoryExtended;
+  @Autowired private PersonRepositoryExtended repositoryExtended;
 
-    @Test
-    public void testCustomMethod() {
-        assertEquals("Hello, world!", repositoryExtended.customMethod());
-    }
+  @Test
+  public void testCustomMethod() {
+    assertEquals("Hello, world!", repositoryExtended.customMethod());
+  }
 }

@@ -14,5 +14,4 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @TestMethodOrder(MethodName.class)
 @SpringJUnitConfig(RepositoryContextConfiguration.class)
-public class RepositoryJavaConfigTest extends BaseRepositoryTest {
-}
+public class RepositoryJavaConfigTest extends BaseRepositoryTest {}

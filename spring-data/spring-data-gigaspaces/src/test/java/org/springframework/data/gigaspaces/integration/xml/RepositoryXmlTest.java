@@ -10,12 +10,11 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
  *
  * Repository is declared in RepositoryXmlTest-context.xml
  *
- * <gigaspaces-data:repositories /> element allows you to simply define a base package that Spring scans for you.
+ * <gigaspaces-data:repositories /> element allows you to simply define a base
+ * package that Spring scans for you.
  *
  * @author Anna_Babich
  */
 @SpringJUnitConfig
 @TestMethodOrder(MethodName.class)
-public class RepositoryXmlTest extends BaseRepositoryTest {
-
-}
+public class RepositoryXmlTest extends BaseRepositoryTest {}

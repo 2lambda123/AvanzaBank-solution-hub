@@ -7,11 +7,10 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig(locations = "classpath*:spring-context.xml")
 public class ProjectionTest {
 
-    @Autowired
-    ProjectionExample projectionExample;
+  @Autowired ProjectionExample projectionExample;
 
-    @Test
-    public void projectionExampleTest(){
-        projectionExample.run();
-    }
+  @Test
+  public void projectionExampleTest() {
+    projectionExample.run();
+  }
 }

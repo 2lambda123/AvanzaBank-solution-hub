@@ -9,18 +9,18 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(
-		classes = Application.class,
-		initializers = ConfigDataApplicationContextInitializer.class
-)
-@TestPropertySource(properties = "spring.main.allow-bean-definition-overriding=true")
+@ContextConfiguration(classes = Application.class,
+                      initializers =
+                          ConfigDataApplicationContextInitializer.class)
+@TestPropertySource(properties =
+                        "spring.main.allow-bean-definition-overriding=true")
 public class QuickStartTest {
 
-    @Autowired
-    Application application;
+  @Autowired Application application;
 
-    @Test
-    public void quickStartTest(){
-        application.quickstartRun();;
-    }
+  @Test
+  public void quickStartTest() {
+    application.quickstartRun();
+    ;
+  }
 }

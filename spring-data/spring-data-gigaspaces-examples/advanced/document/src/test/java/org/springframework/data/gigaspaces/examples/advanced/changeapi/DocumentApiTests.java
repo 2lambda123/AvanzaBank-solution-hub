@@ -12,12 +12,11 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @SpringJUnitConfig(locations = "classpath*:spring-context.xml")
 public class DocumentApiTests {
-    private static Logger log = LoggerFactory.getLogger(DocumentApiMain.class);
+  private static Logger log = LoggerFactory.getLogger(DocumentApiMain.class);
 
-    @Autowired
-    DocumentApiExample documentApiExample;
-    @Test
-    public void validateThatTestRunWithoutIssue() {
-        documentApiExample.run();
-    }
+  @Autowired DocumentApiExample documentApiExample;
+  @Test
+  public void validateThatTestRunWithoutIssue() {
+    documentApiExample.run();
+  }
 }
