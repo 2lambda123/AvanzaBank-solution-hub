@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<gsVersion>9.6.1-9700-RELEASE</gsVersion>
-		<springVersion>6.0.15</springVersion>
+		<springVersion>6.0.16</springVersion>
 		<enviro>training</enviro>
 
 		<maven.compiler.source>1.7</maven.compiler.source>
